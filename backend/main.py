@@ -156,11 +156,6 @@ async def get_snapped_route(session, lat1, lon1, lat2, lon2, last_bearing=None):
                         return route["geometry"]["coordinates"], bearing
     except: pass
     
-    # If OSRM fails due to rate limits, use a straight line fallback ONLY if the jump is small (< 500m)
-    # This prevents ugly lines across the city but keeps the map painted when tracking tightly (15s gaps)
-    if straight_dist_m < 500:
-        return [[lon1, lat1], [lon2, lat2]], bearing
-        
     return [], bearing
 
 @app.on_event("startup")
@@ -179,8 +174,14 @@ async def live_gps_tracker_loop():
             all_buses = []
             
             # Fetch from actual DTC Live API using the cracked CSRF technique
-            tasks = [fetch_real_route(uid) for uid in UIDS_TO_TRACK]
-            results = await asyncio.gather(*tasks)
+            # Use a semaphore to prevent 502 Bad Gateway (DDoS-ing the DTC server)
+            sem = asyncio.Semaphore(5)
+            async def fetch_with_sem(uid):
+                async with sem:
+                    return await fetch_real_route(uid)
+                    
+            tasks = [fetch_with_sem(uid) for uid in UIDS_TO_TRACK]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
             for buses in results:
                 if isinstance(buses, list):
                     all_buses.extend(buses)
@@ -203,6 +204,10 @@ async def live_gps_tracker_loop():
                     if 0 < dist < 5 and time_diff > 0:
                         speed = (dist / (time_diff / 3600))
                         color = get_color_for_speed(speed)
+                        
+                        # RESPECT OSRM RATE LIMITS: 1 request per second
+                        await asyncio.sleep(1.0)
+                        
                         path_geojson, new_bearing = await get_snapped_route(osrm_session, prev["lat"], prev["lng"], lat, lng, prev.get("bearing"))
                         
                         if path_geojson:
