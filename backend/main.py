@@ -8,6 +8,7 @@ from fastapi.responses import FileResponse
 from math import radians, cos, sin, asin, sqrt
 import json
 import os
+import csv
 
 app = FastAPI()
 
@@ -20,6 +21,7 @@ app.add_middleware(
 )
 
 @app.get("/")
+@app.head("/")
 async def serve_frontend():
     return FileResponse(os.path.join(os.path.dirname(__file__), "..", "frontend", "index.html"))
 
@@ -38,19 +40,20 @@ if os.path.exists("state.json"):
     except Exception as e:
         print("Failed to load state:", e)  
 
-# The specific Route UIDs we cracked from the DTC internal API
-# Corrected route mappings from LIVE tracking DB:
-# 73 = 2206, 2205, 3348, 3349
-# 307/309 = 1796, 1794, 395, 396, 399, 400, 1793, 3424, 3425, 3426, 1795, 1798, 1797
-# 391 = 1878/1877/464
-# 469 = 1974/1973; 534 = 2050/2048; 85 = 2343/2340; D-4501 = 2880/2881; D-5401 = 2884/2885
-UIDS_TO_TRACK = [
-    "2206", "2205", "3348", "3349",
-    "1796", "1794", "395", "396", "399", "400", "1793", "3424", "3425", "3426", "1795", "1798", "1797",
-    "1878", "1877", "464", "1974", "1973", "2050", "2048", "2343", "2340", "2880", "2881", "2884", "2885",
-    "1967", "1968", "2044", "2045",
-    "1927", "1928", "1931", "1932", "1977", "1978"
-]
+# Load all routes dynamically from the CSV file
+UIDS_TO_TRACK = []
+csv_path = os.path.join(os.path.dirname(__file__), "..", "all_routes.csv")
+if os.path.exists(csv_path):
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        try:
+            next(reader) # skip header
+            for row in reader:
+                if row:
+                    UIDS_TO_TRACK.append(str(row[0]))
+        except Exception:
+            pass
+print(f"Loaded {len(UIDS_TO_TRACK)} routes to track.")
 
 _dtc_session = None
 
@@ -170,13 +173,31 @@ async def startup_event():
 async def live_gps_tracker_loop():
     global last_positions, active_segments, _dtc_session
     
+    current_route_index = 0
+    batch_size = 50
+    
     async with aiohttp.ClientSession() as osrm_session:
         while True:
             now = time.time()
             all_buses = []
             
-            # Fetch from actual DTC Live API using the cracked CSRF technique
-            for uid in UIDS_TO_TRACK:
+            if not UIDS_TO_TRACK:
+                await asyncio.sleep(15)
+                continue
+                
+            # Round-robin slice
+            end_index = current_route_index + batch_size
+            current_batch = UIDS_TO_TRACK[current_route_index:end_index]
+            
+            # Wrap around
+            if end_index >= len(UIDS_TO_TRACK):
+                current_batch += UIDS_TO_TRACK[0:(end_index - len(UIDS_TO_TRACK))]
+                current_route_index = end_index - len(UIDS_TO_TRACK)
+            else:
+                current_route_index = end_index
+            
+            # Fetch from actual DTC Live API
+            for uid in current_batch:
                 buses = await fetch_real_route(uid)
                 if isinstance(buses, list):
                     all_buses.extend(buses)
@@ -253,7 +274,7 @@ async def get_traffic_segments():
     
     buses_geojson = []
     for bid, pos in last_positions.items():
-        if time.time() - pos["timestamp"] < 300: 
+        if time.time() - pos["timestamp"] < 600: 
             buses_geojson.append({
                 "type": "Feature",
                 "properties": {
