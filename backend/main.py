@@ -147,18 +147,20 @@ async def get_snapped_route(session, lat1, lon1, lat2, lon2, last_bearing=None):
                 if data.get("code") == "Ok":
                     route = data["routes"][0]
                     
-                    # A bus traveling for 15s cannot physically make 5+ distinct turns. 
-                    # If it has 5+ steps, it's jumping through narrow residential colony streets due to GPS noise.
                     legs = route.get("legs", [])
                     if legs and "steps" in legs[0]:
                         if len(legs[0]["steps"]) > 4:
                             return [], bearing
 
-                    # Relaxed distance rejection (3.0x) to allow curved flyovers and highway loops
                     if straight_dist_m == 0 or route["distance"] <= straight_dist_m * 3.0 or route["distance"] <= 50:
                         return route["geometry"]["coordinates"], bearing
     except: pass
     
+    # If OSRM fails due to rate limits, use a straight line fallback ONLY if the jump is small (< 500m)
+    # This prevents ugly lines across the city but keeps the map painted when tracking tightly (15s gaps)
+    if straight_dist_m < 500:
+        return [[lon1, lat1], [lon2, lat2]], bearing
+        
     return [], bearing
 
 @app.on_event("startup")
@@ -177,8 +179,9 @@ async def live_gps_tracker_loop():
             all_buses = []
             
             # Fetch from actual DTC Live API using the cracked CSRF technique
-            for uid in UIDS_TO_TRACK:
-                buses = await fetch_real_route(uid)
+            tasks = [fetch_real_route(uid) for uid in UIDS_TO_TRACK]
+            results = await asyncio.gather(*tasks)
+            for buses in results:
                 if isinstance(buses, list):
                     all_buses.extend(buses)
                     
