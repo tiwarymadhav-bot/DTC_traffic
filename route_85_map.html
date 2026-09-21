@@ -1,0 +1,2880 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_58c2e863ce74a981ecbac27ae8101725 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+<div style='
+    position:fixed; bottom:30px; right:10px; z-index:9999;
+    background:white; padding:12px 16px; border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25); font-family:sans-serif;
+    font-size:12px; min-width:160px;
+'>
+  <b style='font-size:13px;'>🚦 Traffic Legend</b><br><br>
+  <span style='color:#FF0000;'>●</span> Heavy Jam (&lt;5 km/h)<br>
+  <span style='color:#FF8C00;'>●</span> Moderate (5–15 km/h)<br>
+  <span style='color:#FFD700;'>●</span> Slow (15–30 km/h)<br>
+  <span style='color:#00CC00;'>●</span> Free Flow (&gt;30 km/h)<br><br>
+  <b>Route 85</b><br>
+  <span style='color:#555;font-size:11px;'>Anand Vihar ISBT →<br>Punjabi Bagh Terminal<br>52 stops | DTC</span>
+</div>
+    
+            <div class="folium-map" id="map_58c2e863ce74a981ecbac27ae8101725" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_58c2e863ce74a981ecbac27ae8101725 = L.map(
+                "map_58c2e863ce74a981ecbac27ae8101725",
+                {
+                    center: [28.65740039510781, 77.22754518442537],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_58c2e863ce74a981ecbac27ae8101725);
+
+            
+
+        
+    
+            var tile_layer_2af8e888bf5758b593179e62e2fe4e88 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2af8e888bf5758b593179e62e2fe4e88.addTo(map_58c2e863ce74a981ecbac27ae8101725);
+        
+    
+            ant_path_57f5e72999ab9e3af7bbd5d2556d374e = L.polyline.antPath(
+              [[28.64707679021562, 77.31758236885072], [28.6475, 77.3168], [28.6492, 77.3089], [28.6415, 77.304], [28.6393, 77.2981], [28.6382, 77.2956], [28.6378, 77.2892], [28.6371, 77.2845], [28.6368, 77.28], [28.6362, 77.2768], [28.6358, 77.2742], [28.6352, 77.2718], [28.6347, 77.2695], [28.634, 77.2672], [28.6335, 77.2651], [28.6328, 77.2631], [28.632, 77.2612], [28.6315, 77.2593], [28.631, 77.2573], [28.6305, 77.2553], [28.63, 77.2535], [28.6295, 77.2517], [28.6288, 77.2498], [28.6283, 77.2475], [28.6278, 77.2452], [28.6219, 77.241], [28.628, 77.2401], [28.6332, 77.2368], [28.6258, 77.2321], [28.6283, 77.2268], [28.6295, 77.2244], [28.6295, 77.2215], [28.6267, 77.2082], [28.6251, 77.2051], [28.634, 77.2054], [28.6387, 77.2068], [28.641, 77.2035], [28.6418, 77.201], [28.6452, 77.1985], [28.6491, 77.195], [28.652, 77.1898], [28.6553, 77.1795], [28.6558, 77.1785], [28.6582, 77.1723], [28.6607, 77.1662], [28.6632, 77.1602], [28.6645, 77.1543], [28.6652, 77.151], [28.6668, 77.1468], [28.6689, 77.142], [28.6703, 77.138], [28.667724, 77.137508]],
+              {
+  "stroke": true,
+  "color": "#1565C0",
+  "weight": 4,
+  "opacity": 0.8,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#1565C0",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 800,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_58c2e863ce74a981ecbac27ae8101725);
+        
+    
+            ant_path_57f5e72999ab9e3af7bbd5d2556d374e.bindTooltip(
+                `<div>
+                     DTC Route 85: Anand Vihar ISBT → Punjabi Bagh Terminal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_57bf2d531148fabe4fda2bca98b615ff = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_58009efb7c7b948a6c5cf39df5cf844b = L.marker(
+                [28.64707679021562, 77.31758236885072],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_35f6b1594072c7be18293725b2e93dc0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_a025338598d9fdbb88a293bed687fa65 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_237fd24b7f0efeab02591241a7bb09df = $(`<div id="html_237fd24b7f0efeab02591241a7bb09df" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#1 Anand Vihar ISBT</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64708, 77.31758       </span>       <div id='eta-1' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_a025338598d9fdbb88a293bed687fa65.setContent(html_237fd24b7f0efeab02591241a7bb09df);
+            
+        
+
+        marker_58009efb7c7b948a6c5cf39df5cf844b.bindPopup(popup_a025338598d9fdbb88a293bed687fa65)
+        ;
+
+        
+    
+    
+            marker_58009efb7c7b948a6c5cf39df5cf844b.bindTooltip(
+                `<div>
+                     #1 Anand Vihar ISBT
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_58009efb7c7b948a6c5cf39df5cf844b.setIcon(icon_35f6b1594072c7be18293725b2e93dc0);
+            
+    
+            var marker_0b0fd626bf002031f6b32ed72cddf939 = L.marker(
+                [28.6475, 77.3168],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_7d45d6f6456cea4fcc7a53ff72daa5ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_c95e8b4f9a001d13f41bf9608ffe66ee = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_bbf17a88173c6f833635daa7060f82b6 = $(`<div id="html_bbf17a88173c6f833635daa7060f82b6" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#2 Anand Vihar ISBT Main Road</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64750, 77.31680       </span>       <div id='eta-2' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_c95e8b4f9a001d13f41bf9608ffe66ee.setContent(html_bbf17a88173c6f833635daa7060f82b6);
+            
+        
+
+        marker_0b0fd626bf002031f6b32ed72cddf939.bindPopup(popup_c95e8b4f9a001d13f41bf9608ffe66ee)
+        ;
+
+        
+    
+    
+            marker_0b0fd626bf002031f6b32ed72cddf939.bindTooltip(
+                `<div>
+                     #2 Anand Vihar ISBT Main Road
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0b0fd626bf002031f6b32ed72cddf939.setIcon(icon_7d45d6f6456cea4fcc7a53ff72daa5ed);
+            
+    
+            var marker_e2849aec9ce11bee3aca2750c44930fc = L.marker(
+                [28.6492, 77.3089],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_53b0e3fe23478aa91409df8b4915c55c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_7f476040f5f28d1d3966deb088a99a3d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_625161b8bf44ac6257683a7f614a486a = $(`<div id="html_625161b8bf44ac6257683a7f614a486a" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#3 Maharaj Pur Check Post</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64920, 77.30890       </span>       <div id='eta-3' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_7f476040f5f28d1d3966deb088a99a3d.setContent(html_625161b8bf44ac6257683a7f614a486a);
+            
+        
+
+        marker_e2849aec9ce11bee3aca2750c44930fc.bindPopup(popup_7f476040f5f28d1d3966deb088a99a3d)
+        ;
+
+        
+    
+    
+            marker_e2849aec9ce11bee3aca2750c44930fc.bindTooltip(
+                `<div>
+                     #3 Maharaj Pur Check Post
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e2849aec9ce11bee3aca2750c44930fc.setIcon(icon_53b0e3fe23478aa91409df8b4915c55c);
+            
+    
+            var marker_b693c0c4d688eb6c93ca2e112e401579 = L.marker(
+                [28.6415, 77.304],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_eba210d3013bffa6b08890f88276644c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_71231dafbb4fc25dc9d3b1f32024c012 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0196a4f55678714d2d68b73c49f44a6f = $(`<div id="html_0196a4f55678714d2d68b73c49f44a6f" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#4 EDM Mall / Gazipur Depot</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64150, 77.30400       </span>       <div id='eta-4' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_71231dafbb4fc25dc9d3b1f32024c012.setContent(html_0196a4f55678714d2d68b73c49f44a6f);
+            
+        
+
+        marker_b693c0c4d688eb6c93ca2e112e401579.bindPopup(popup_71231dafbb4fc25dc9d3b1f32024c012)
+        ;
+
+        
+    
+    
+            marker_b693c0c4d688eb6c93ca2e112e401579.bindTooltip(
+                `<div>
+                     #4 EDM Mall / Gazipur Depot
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b693c0c4d688eb6c93ca2e112e401579.setIcon(icon_eba210d3013bffa6b08890f88276644c);
+            
+    
+            var marker_4891d200042cdb29b037cd29bddd82b6 = L.marker(
+                [28.6393, 77.2981],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_2eb9426be356e429b91c71f3eab0abf5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_0ae84791bef5d6b4924e7a0a06671c73 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_3c8d8c81718f08b29dbc583f35cf1a86 = $(`<div id="html_3c8d8c81718f08b29dbc583f35cf1a86" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#5 Hasanpur Village</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63930, 77.29810       </span>       <div id='eta-5' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_0ae84791bef5d6b4924e7a0a06671c73.setContent(html_3c8d8c81718f08b29dbc583f35cf1a86);
+            
+        
+
+        marker_4891d200042cdb29b037cd29bddd82b6.bindPopup(popup_0ae84791bef5d6b4924e7a0a06671c73)
+        ;
+
+        
+    
+    
+            marker_4891d200042cdb29b037cd29bddd82b6.bindTooltip(
+                `<div>
+                     #5 Hasanpur Village
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4891d200042cdb29b037cd29bddd82b6.setIcon(icon_2eb9426be356e429b91c71f3eab0abf5);
+            
+    
+            var marker_ecbb3608a1731e78054d08d72b7c16e4 = L.marker(
+                [28.6382, 77.2956],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_f239291b787c23c19d1908a2b5a2fcd2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_a6f3988ccaeeec922e32b789873cb17a = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0c052d517aca58f8bde6735a218be693 = $(`<div id="html_0c052d517aca58f8bde6735a218be693" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#6 Hasanpur Depot</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63820, 77.29560       </span>       <div id='eta-6' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_a6f3988ccaeeec922e32b789873cb17a.setContent(html_0c052d517aca58f8bde6735a218be693);
+            
+        
+
+        marker_ecbb3608a1731e78054d08d72b7c16e4.bindPopup(popup_a6f3988ccaeeec922e32b789873cb17a)
+        ;
+
+        
+    
+    
+            marker_ecbb3608a1731e78054d08d72b7c16e4.bindTooltip(
+                `<div>
+                     #6 Hasanpur Depot
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ecbb3608a1731e78054d08d72b7c16e4.setIcon(icon_f239291b787c23c19d1908a2b5a2fcd2);
+            
+    
+            var marker_0447fd6b23965b6f1da2787c60b60b2e = L.marker(
+                [28.6378, 77.2892],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_42ba7ecafda5eb0842a864fd57588fec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_85958567d20278403c06f72e587c6153 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d616c0f2a9f9228d360af18102347462 = $(`<div id="html_d616c0f2a9f9228d360af18102347462" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#7 Ashirwad Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63780, 77.28920       </span>       <div id='eta-7' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_85958567d20278403c06f72e587c6153.setContent(html_d616c0f2a9f9228d360af18102347462);
+            
+        
+
+        marker_0447fd6b23965b6f1da2787c60b60b2e.bindPopup(popup_85958567d20278403c06f72e587c6153)
+        ;
+
+        
+    
+    
+            marker_0447fd6b23965b6f1da2787c60b60b2e.bindTooltip(
+                `<div>
+                     #7 Ashirwad Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0447fd6b23965b6f1da2787c60b60b2e.setIcon(icon_42ba7ecafda5eb0842a864fd57588fec);
+            
+    
+            var marker_60b3aafc42854de02acac09f8902cbd8 = L.marker(
+                [28.6371, 77.2845],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_8cf1f8b5eea76a0337e1e4f7b28734a6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_edb423477dbf3f08d8154391ba02849b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7ff5edded38c3ffa97031dfda0a2324b = $(`<div id="html_7ff5edded38c3ffa97031dfda0a2324b" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#8 Chandar Vihar</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63710, 77.28450       </span>       <div id='eta-8' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_edb423477dbf3f08d8154391ba02849b.setContent(html_7ff5edded38c3ffa97031dfda0a2324b);
+            
+        
+
+        marker_60b3aafc42854de02acac09f8902cbd8.bindPopup(popup_edb423477dbf3f08d8154391ba02849b)
+        ;
+
+        
+    
+    
+            marker_60b3aafc42854de02acac09f8902cbd8.bindTooltip(
+                `<div>
+                     #8 Chandar Vihar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_60b3aafc42854de02acac09f8902cbd8.setIcon(icon_8cf1f8b5eea76a0337e1e4f7b28734a6);
+            
+    
+            var marker_632e2affc4238c23331c764a4f573617 = L.marker(
+                [28.6368, 77.28],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_1b4f708eee76267e80eb035963528b06 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_15ef553b178c72d4960f397d29256735 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_e4dd8a5e11d53704243922f929ef514c = $(`<div id="html_e4dd8a5e11d53704243922f929ef514c" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#9 Mandawali Government School</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63680, 77.28000       </span>       <div id='eta-9' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_15ef553b178c72d4960f397d29256735.setContent(html_e4dd8a5e11d53704243922f929ef514c);
+            
+        
+
+        marker_632e2affc4238c23331c764a4f573617.bindPopup(popup_15ef553b178c72d4960f397d29256735)
+        ;
+
+        
+    
+    
+            marker_632e2affc4238c23331c764a4f573617.bindTooltip(
+                `<div>
+                     #9 Mandawali Government School
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_632e2affc4238c23331c764a4f573617.setIcon(icon_1b4f708eee76267e80eb035963528b06);
+            
+    
+            var marker_384fe731bef1376fb8c9565b50269c50 = L.marker(
+                [28.6362, 77.2768],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_ea7553b12246fced9d80271f30435b9f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_8937d021eca8f793c09d83aa76cb4534 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_1832d5408984b3acee1dc9557bed4c3c = $(`<div id="html_1832d5408984b3acee1dc9557bed4c3c" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#10 Prince Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63620, 77.27680       </span>       <div id='eta-10' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_8937d021eca8f793c09d83aa76cb4534.setContent(html_1832d5408984b3acee1dc9557bed4c3c);
+            
+        
+
+        marker_384fe731bef1376fb8c9565b50269c50.bindPopup(popup_8937d021eca8f793c09d83aa76cb4534)
+        ;
+
+        
+    
+    
+            marker_384fe731bef1376fb8c9565b50269c50.bindTooltip(
+                `<div>
+                     #10 Prince Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_384fe731bef1376fb8c9565b50269c50.setIcon(icon_ea7553b12246fced9d80271f30435b9f);
+            
+    
+            var marker_6d0a33d687f0ac89921fe2fff45105d2 = L.marker(
+                [28.6358, 77.2742],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_9ae7d857ac3f0b56c6ac6fd36e60dce1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_0f8f616154a63c4dd53620488ef57282 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_1015e0af205ff3f8da049e64b2459129 = $(`<div id="html_1015e0af205ff3f8da049e64b2459129" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#11 Neeti Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63580, 77.27420       </span>       <div id='eta-11' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_0f8f616154a63c4dd53620488ef57282.setContent(html_1015e0af205ff3f8da049e64b2459129);
+            
+        
+
+        marker_6d0a33d687f0ac89921fe2fff45105d2.bindPopup(popup_0f8f616154a63c4dd53620488ef57282)
+        ;
+
+        
+    
+    
+            marker_6d0a33d687f0ac89921fe2fff45105d2.bindTooltip(
+                `<div>
+                     #11 Neeti Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6d0a33d687f0ac89921fe2fff45105d2.setIcon(icon_9ae7d857ac3f0b56c6ac6fd36e60dce1);
+            
+    
+            var marker_243eea784cbf467bfc9c73b15ef59a22 = L.marker(
+                [28.6352, 77.2718],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_0fca0cc8a4535d2808db89ccbc754d39 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_48f72e441639e0ba5c8602900f193265 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_acf55a5da87d215b6ee73b319d6f80b0 = $(`<div id="html_acf55a5da87d215b6ee73b319d6f80b0" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#12 Himalaya Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63520, 77.27180       </span>       <div id='eta-12' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_48f72e441639e0ba5c8602900f193265.setContent(html_acf55a5da87d215b6ee73b319d6f80b0);
+            
+        
+
+        marker_243eea784cbf467bfc9c73b15ef59a22.bindPopup(popup_48f72e441639e0ba5c8602900f193265)
+        ;
+
+        
+    
+    
+            marker_243eea784cbf467bfc9c73b15ef59a22.bindTooltip(
+                `<div>
+                     #12 Himalaya Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_243eea784cbf467bfc9c73b15ef59a22.setIcon(icon_0fca0cc8a4535d2808db89ccbc754d39);
+            
+    
+            var marker_5fed9103df5dc55c2e1316ed19791d1d = L.marker(
+                [28.6347, 77.2695],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_5a8c161faac81b65d23aacad0e582a21 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_54e0bd09bd957359b024a2dd1e3314dc = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_aa64f3aa8c415db4cfb29771803ae64a = $(`<div id="html_aa64f3aa8c415db4cfb29771803ae64a" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#13 Balco Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63470, 77.26950       </span>       <div id='eta-13' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_54e0bd09bd957359b024a2dd1e3314dc.setContent(html_aa64f3aa8c415db4cfb29771803ae64a);
+            
+        
+
+        marker_5fed9103df5dc55c2e1316ed19791d1d.bindPopup(popup_54e0bd09bd957359b024a2dd1e3314dc)
+        ;
+
+        
+    
+    
+            marker_5fed9103df5dc55c2e1316ed19791d1d.bindTooltip(
+                `<div>
+                     #13 Balco Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5fed9103df5dc55c2e1316ed19791d1d.setIcon(icon_5a8c161faac81b65d23aacad0e582a21);
+            
+    
+            var marker_d3bd8bb95f98d2591a1d0515d2e5c6cc = L.marker(
+                [28.634, 77.2672],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_be8300d675f6ffa430fa70f0280eb09a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_9a9f43efeb25bc1f34cd8493fc15caaf = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_5a11729e1b6962e9c761421e7852bd3f = $(`<div id="html_5a11729e1b6962e9c761421e7852bd3f" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#14 Vijaya Laxmi Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63400, 77.26720       </span>       <div id='eta-14' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_9a9f43efeb25bc1f34cd8493fc15caaf.setContent(html_5a11729e1b6962e9c761421e7852bd3f);
+            
+        
+
+        marker_d3bd8bb95f98d2591a1d0515d2e5c6cc.bindPopup(popup_9a9f43efeb25bc1f34cd8493fc15caaf)
+        ;
+
+        
+    
+    
+            marker_d3bd8bb95f98d2591a1d0515d2e5c6cc.bindTooltip(
+                `<div>
+                     #14 Vijaya Laxmi Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d3bd8bb95f98d2591a1d0515d2e5c6cc.setIcon(icon_be8300d675f6ffa430fa70f0280eb09a);
+            
+    
+            var marker_107a2c3705ef5b67ea402aea81c34b99 = L.marker(
+                [28.6335, 77.2651],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_ad100d0ed51eb9cc8912910e3d0d5e53 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_10ea107406a7157bcbaacf0306556492 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_9501aab511ce232e11e8ad0999e8dec1 = $(`<div id="html_9501aab511ce232e11e8ad0999e8dec1" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#15 Parivar Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63350, 77.26510       </span>       <div id='eta-15' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_10ea107406a7157bcbaacf0306556492.setContent(html_9501aab511ce232e11e8ad0999e8dec1);
+            
+        
+
+        marker_107a2c3705ef5b67ea402aea81c34b99.bindPopup(popup_10ea107406a7157bcbaacf0306556492)
+        ;
+
+        
+    
+    
+            marker_107a2c3705ef5b67ea402aea81c34b99.bindTooltip(
+                `<div>
+                     #15 Parivar Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_107a2c3705ef5b67ea402aea81c34b99.setIcon(icon_ad100d0ed51eb9cc8912910e3d0d5e53);
+            
+    
+            var marker_61d99ae865698483114c035abdef3c88 = L.marker(
+                [28.6328, 77.2631],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_9070b24ca3d80527f735bf40366a0356 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_3b81780ce19f8f55d524adc38a4a1a1c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_bd3740a63b104b566a377991dc7d696f = $(`<div id="html_bd3740a63b104b566a377991dc7d696f" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#16 Ras Vihar Apartment (PS Madhu Vihar)</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63280, 77.26310       </span>       <div id='eta-16' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_3b81780ce19f8f55d524adc38a4a1a1c.setContent(html_bd3740a63b104b566a377991dc7d696f);
+            
+        
+
+        marker_61d99ae865698483114c035abdef3c88.bindPopup(popup_3b81780ce19f8f55d524adc38a4a1a1c)
+        ;
+
+        
+    
+    
+            marker_61d99ae865698483114c035abdef3c88.bindTooltip(
+                `<div>
+                     #16 Ras Vihar Apartment (PS Madhu Vihar)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_61d99ae865698483114c035abdef3c88.setIcon(icon_9070b24ca3d80527f735bf40366a0356);
+            
+    
+            var marker_4f5f7651b6756f1bd4ec0e2b659f055b = L.marker(
+                [28.632, 77.2612],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_d76c801fdc8ebea6bf0f0831cd72e8f3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_3e9fc44682df716e3a55f9cb8a0bbde5 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_e25b3a72d6f724df918543a2674162b9 = $(`<div id="html_e25b3a72d6f724df918543a2674162b9" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#17 Saraswati Kunj</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63200, 77.26120       </span>       <div id='eta-17' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_3e9fc44682df716e3a55f9cb8a0bbde5.setContent(html_e25b3a72d6f724df918543a2674162b9);
+            
+        
+
+        marker_4f5f7651b6756f1bd4ec0e2b659f055b.bindPopup(popup_3e9fc44682df716e3a55f9cb8a0bbde5)
+        ;
+
+        
+    
+    
+            marker_4f5f7651b6756f1bd4ec0e2b659f055b.bindTooltip(
+                `<div>
+                     #17 Saraswati Kunj
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4f5f7651b6756f1bd4ec0e2b659f055b.setIcon(icon_d76c801fdc8ebea6bf0f0831cd72e8f3);
+            
+    
+            var marker_6ba4471e2c78d8a0c699d8454070a25f = L.marker(
+                [28.6315, 77.2593],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_aaf395ae64b51c528372e92b4c005dee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_08447a34205d2a11b7edef3e933fad87 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_ab233580d3dbcf46d2c2b00fa8c5fae9 = $(`<div id="html_ab233580d3dbcf46d2c2b00fa8c5fae9" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#18 Press Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63150, 77.25930       </span>       <div id='eta-18' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_08447a34205d2a11b7edef3e933fad87.setContent(html_ab233580d3dbcf46d2c2b00fa8c5fae9);
+            
+        
+
+        marker_6ba4471e2c78d8a0c699d8454070a25f.bindPopup(popup_08447a34205d2a11b7edef3e933fad87)
+        ;
+
+        
+    
+    
+            marker_6ba4471e2c78d8a0c699d8454070a25f.bindTooltip(
+                `<div>
+                     #18 Press Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6ba4471e2c78d8a0c699d8454070a25f.setIcon(icon_aaf395ae64b51c528372e92b4c005dee);
+            
+    
+            var marker_37c5bd485d3c27e2dbfbdfc57241db76 = L.marker(
+                [28.631, 77.2573],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_2c88f226d99644afef500e64a55943d6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_591c18a13acc989a4e7547f1fbf85877 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0df4ce38bd7f50640d16de9747459fe6 = $(`<div id="html_0df4ce38bd7f50640d16de9747459fe6" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#19 Govt Model School / Ambedkar Park</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63100, 77.25730       </span>       <div id='eta-19' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_591c18a13acc989a4e7547f1fbf85877.setContent(html_0df4ce38bd7f50640d16de9747459fe6);
+            
+        
+
+        marker_37c5bd485d3c27e2dbfbdfc57241db76.bindPopup(popup_591c18a13acc989a4e7547f1fbf85877)
+        ;
+
+        
+    
+    
+            marker_37c5bd485d3c27e2dbfbdfc57241db76.bindTooltip(
+                `<div>
+                     #19 Govt Model School / Ambedkar Park
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_37c5bd485d3c27e2dbfbdfc57241db76.setIcon(icon_2c88f226d99644afef500e64a55943d6);
+            
+    
+            var marker_bc949e30eb617820a092b9b1c6f85050 = L.marker(
+                [28.6305, 77.2553],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_5928d844ce819162b619cfb6489e5a14 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_d64ce61486ce630729b28f8c819b6db6 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_8a63c267965bda65fa0ca3d1792fedbc = $(`<div id="html_8a63c267965bda65fa0ca3d1792fedbc" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#20 Dharma Apartment</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63050, 77.25530       </span>       <div id='eta-20' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_d64ce61486ce630729b28f8c819b6db6.setContent(html_8a63c267965bda65fa0ca3d1792fedbc);
+            
+        
+
+        marker_bc949e30eb617820a092b9b1c6f85050.bindPopup(popup_d64ce61486ce630729b28f8c819b6db6)
+        ;
+
+        
+    
+    
+            marker_bc949e30eb617820a092b9b1c6f85050.bindTooltip(
+                `<div>
+                     #20 Dharma Apartment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bc949e30eb617820a092b9b1c6f85050.setIcon(icon_5928d844ce819162b619cfb6489e5a14);
+            
+    
+            var marker_f3eebd12ca3ad3c218952de583befe6f = L.marker(
+                [28.63, 77.2535],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_cc0f7ad6b30474a314b32cc3ba66632b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_5a2668e88208eeff722bb9d22f74fd77 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d078364b10a9e7f484f88ed710d8ff5a = $(`<div id="html_d078364b10a9e7f484f88ed710d8ff5a" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#21 Mother Dairy Crossing</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63000, 77.25350       </span>       <div id='eta-21' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_5a2668e88208eeff722bb9d22f74fd77.setContent(html_d078364b10a9e7f484f88ed710d8ff5a);
+            
+        
+
+        marker_f3eebd12ca3ad3c218952de583befe6f.bindPopup(popup_5a2668e88208eeff722bb9d22f74fd77)
+        ;
+
+        
+    
+    
+            marker_f3eebd12ca3ad3c218952de583befe6f.bindTooltip(
+                `<div>
+                     #21 Mother Dairy Crossing
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f3eebd12ca3ad3c218952de583befe6f.setIcon(icon_cc0f7ad6b30474a314b32cc3ba66632b);
+            
+    
+            var marker_7062ca5cbf321f8069648baa63d36182 = L.marker(
+                [28.6295, 77.2517],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_d4fd2476ca8d7654120e66e421f007b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_2c72d80bc3c9396c524811dbe4c9a170 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_473a3d622bf17b1a2f29f78cc3f877d8 = $(`<div id="html_473a3d622bf17b1a2f29f78cc3f877d8" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#22 Mother Dairy</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62950, 77.25170       </span>       <div id='eta-22' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_2c72d80bc3c9396c524811dbe4c9a170.setContent(html_473a3d622bf17b1a2f29f78cc3f877d8);
+            
+        
+
+        marker_7062ca5cbf321f8069648baa63d36182.bindPopup(popup_2c72d80bc3c9396c524811dbe4c9a170)
+        ;
+
+        
+    
+    
+            marker_7062ca5cbf321f8069648baa63d36182.bindTooltip(
+                `<div>
+                     #22 Mother Dairy
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7062ca5cbf321f8069648baa63d36182.setIcon(icon_d4fd2476ca8d7654120e66e421f007b2);
+            
+    
+            var marker_981242e91a7673f935c16be59d9d92ba = L.marker(
+                [28.6288, 77.2498],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_40c70b2b8d7c694f5ffc3eae907b0597 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_bffbabb34e8ad93e73ce42061880a89f = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_4957c48d8dc48a2a19ded58a18ea1148 = $(`<div id="html_4957c48d8dc48a2a19ded58a18ea1148" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#23 Shakar Pur School Block</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62880, 77.24980       </span>       <div id='eta-23' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_bffbabb34e8ad93e73ce42061880a89f.setContent(html_4957c48d8dc48a2a19ded58a18ea1148);
+            
+        
+
+        marker_981242e91a7673f935c16be59d9d92ba.bindPopup(popup_bffbabb34e8ad93e73ce42061880a89f)
+        ;
+
+        
+    
+    
+            marker_981242e91a7673f935c16be59d9d92ba.bindTooltip(
+                `<div>
+                     #23 Shakar Pur School Block
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_981242e91a7673f935c16be59d9d92ba.setIcon(icon_40c70b2b8d7c694f5ffc3eae907b0597);
+            
+    
+            var marker_47cc880d314c9eb9500a36250ddd8fae = L.marker(
+                [28.6283, 77.2475],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_41cfae821b81bd4334c872edc1580ed5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_6f681d8a2747d5dfd1c74845448747ea = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_9bf9641970643ec9787e0f05c57f9005 = $(`<div id="html_9bf9641970643ec9787e0f05c57f9005" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#24 Laxmi Nagar X-ing / Laxmi Nagar</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62830, 77.24750       </span>       <div id='eta-24' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_6f681d8a2747d5dfd1c74845448747ea.setContent(html_9bf9641970643ec9787e0f05c57f9005);
+            
+        
+
+        marker_47cc880d314c9eb9500a36250ddd8fae.bindPopup(popup_6f681d8a2747d5dfd1c74845448747ea)
+        ;
+
+        
+    
+    
+            marker_47cc880d314c9eb9500a36250ddd8fae.bindTooltip(
+                `<div>
+                     #24 Laxmi Nagar X-ing / Laxmi Nagar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_47cc880d314c9eb9500a36250ddd8fae.setIcon(icon_41cfae821b81bd4334c872edc1580ed5);
+            
+    
+            var marker_3a8f236014f68421162b5be6a453fee3 = L.marker(
+                [28.6278, 77.2452],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_c4361d6e1647bf4e9657ef015ce10e07 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_8e835bb0574dadd1701341b6c405deb4 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_2508107d4536803c74c55fbb1de798c1 = $(`<div id="html_2508107d4536803c74c55fbb1de798c1" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#25 Rainy Well</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62780, 77.24520       </span>       <div id='eta-25' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_8e835bb0574dadd1701341b6c405deb4.setContent(html_2508107d4536803c74c55fbb1de798c1);
+            
+        
+
+        marker_3a8f236014f68421162b5be6a453fee3.bindPopup(popup_8e835bb0574dadd1701341b6c405deb4)
+        ;
+
+        
+    
+    
+            marker_3a8f236014f68421162b5be6a453fee3.bindTooltip(
+                `<div>
+                     #25 Rainy Well
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a8f236014f68421162b5be6a453fee3.setIcon(icon_c4361d6e1647bf4e9657ef015ce10e07);
+            
+    
+            var marker_a3f1a4108093aeeeafd379eb47dca7b9 = L.marker(
+                [28.6219, 77.241],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_a520c71a396e9c5eadda87227671d359 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_8e630032d6b566b3bd0007bfea85b0e7 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_21f2997dcc2d22446a16578b63d5b0b5 = $(`<div id="html_21f2997dcc2d22446a16578b63d5b0b5" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#26 Delhi Secretariat</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62190, 77.24100       </span>       <div id='eta-26' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_8e630032d6b566b3bd0007bfea85b0e7.setContent(html_21f2997dcc2d22446a16578b63d5b0b5);
+            
+        
+
+        marker_a3f1a4108093aeeeafd379eb47dca7b9.bindPopup(popup_8e630032d6b566b3bd0007bfea85b0e7)
+        ;
+
+        
+    
+    
+            marker_a3f1a4108093aeeeafd379eb47dca7b9.bindTooltip(
+                `<div>
+                     #26 Delhi Secretariat
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a3f1a4108093aeeeafd379eb47dca7b9.setIcon(icon_a520c71a396e9c5eadda87227671d359);
+            
+    
+            var marker_0c33633d41479100a105d02a4c75bfa3 = L.marker(
+                [28.628, 77.2401],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_dac3f13df4a437174479e6f054f37e36 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_205a71a3c8bb3cf30cc2ef12bef5372d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6ed3cc1b21918630cc6ac9718bcc9d73 = $(`<div id="html_6ed3cc1b21918630cc6ac9718bcc9d73" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#27 ITO AGCR / ITO</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62800, 77.24010       </span>       <div id='eta-27' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_205a71a3c8bb3cf30cc2ef12bef5372d.setContent(html_6ed3cc1b21918630cc6ac9718bcc9d73);
+            
+        
+
+        marker_0c33633d41479100a105d02a4c75bfa3.bindPopup(popup_205a71a3c8bb3cf30cc2ef12bef5372d)
+        ;
+
+        
+    
+    
+            marker_0c33633d41479100a105d02a4c75bfa3.bindTooltip(
+                `<div>
+                     #27 ITO AGCR / ITO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0c33633d41479100a105d02a4c75bfa3.setIcon(icon_dac3f13df4a437174479e6f054f37e36);
+            
+    
+            var marker_dfeb790215c383020e7dcdd35a3d7bc4 = L.marker(
+                [28.6332, 77.2368],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_d662ab15cf882f216e845b415ef6910a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_ab23738d2b51a6d0967cd887716d5f54 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6236f5619a82289a25c7edf9ec460bf0 = $(`<div id="html_6236f5619a82289a25c7edf9ec460bf0" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#28 Tilak Bridge</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63320, 77.23680       </span>       <div id='eta-28' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_ab23738d2b51a6d0967cd887716d5f54.setContent(html_6236f5619a82289a25c7edf9ec460bf0);
+            
+        
+
+        marker_dfeb790215c383020e7dcdd35a3d7bc4.bindPopup(popup_ab23738d2b51a6d0967cd887716d5f54)
+        ;
+
+        
+    
+    
+            marker_dfeb790215c383020e7dcdd35a3d7bc4.bindTooltip(
+                `<div>
+                     #28 Tilak Bridge
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dfeb790215c383020e7dcdd35a3d7bc4.setIcon(icon_d662ab15cf882f216e845b415ef6910a);
+            
+    
+            var marker_75e305d583ac2c770ec52ab1d94b90c3 = L.marker(
+                [28.6258, 77.2321],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_c7377f84d57b66f661fddfa8abf0cd6b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_68c3eb31ea1a82d79b563a4ed84ab57a = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_fcf3fbdd37d8ab0427fa290c1bf946d6 = $(`<div id="html_fcf3fbdd37d8ab0427fa290c1bf946d6" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#29 Mandi House</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62580, 77.23210       </span>       <div id='eta-29' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_68c3eb31ea1a82d79b563a4ed84ab57a.setContent(html_fcf3fbdd37d8ab0427fa290c1bf946d6);
+            
+        
+
+        marker_75e305d583ac2c770ec52ab1d94b90c3.bindPopup(popup_68c3eb31ea1a82d79b563a4ed84ab57a)
+        ;
+
+        
+    
+    
+            marker_75e305d583ac2c770ec52ab1d94b90c3.bindTooltip(
+                `<div>
+                     #29 Mandi House
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_75e305d583ac2c770ec52ab1d94b90c3.setIcon(icon_c7377f84d57b66f661fddfa8abf0cd6b);
+            
+    
+            var marker_03463ce0414966965bf488e7ee8e98df = L.marker(
+                [28.6283, 77.2268],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_836cdf6011169be5394715d434b996aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_64e7c67961e7779e684ce02b0b2c156c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_943c7ff59a8a6c16db2620610d561dd8 = $(`<div id="html_943c7ff59a8a6c16db2620610d561dd8" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#30 MODERN SCHOOL BARA KHAMBA ROAD</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62830, 77.22680       </span>       <div id='eta-30' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_64e7c67961e7779e684ce02b0b2c156c.setContent(html_943c7ff59a8a6c16db2620610d561dd8);
+            
+        
+
+        marker_03463ce0414966965bf488e7ee8e98df.bindPopup(popup_64e7c67961e7779e684ce02b0b2c156c)
+        ;
+
+        
+    
+    
+            marker_03463ce0414966965bf488e7ee8e98df.bindTooltip(
+                `<div>
+                     #30 MODERN SCHOOL BARA KHAMBA ROAD
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_03463ce0414966965bf488e7ee8e98df.setIcon(icon_836cdf6011169be5394715d434b996aa);
+            
+    
+            var marker_84c5e4eb5557fe3ed919ebcaf5642826 = L.marker(
+                [28.6295, 77.2244],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_5d6193d23605d8fbe11dd1c7b3532c6c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_a84d5249a34ed436a9ba58ccf3bf5387 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_83ae56599a09783b52ca1c9454159238 = $(`<div id="html_83ae56599a09783b52ca1c9454159238" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#31 Barakhamba Metro Station</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62950, 77.22440       </span>       <div id='eta-31' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_a84d5249a34ed436a9ba58ccf3bf5387.setContent(html_83ae56599a09783b52ca1c9454159238);
+            
+        
+
+        marker_84c5e4eb5557fe3ed919ebcaf5642826.bindPopup(popup_a84d5249a34ed436a9ba58ccf3bf5387)
+        ;
+
+        
+    
+    
+            marker_84c5e4eb5557fe3ed919ebcaf5642826.bindTooltip(
+                `<div>
+                     #31 Barakhamba Metro Station
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_84c5e4eb5557fe3ed919ebcaf5642826.setIcon(icon_5d6193d23605d8fbe11dd1c7b3532c6c);
+            
+    
+            var marker_3e6317e4d4f03fa26b0f74245d0f7414 = L.marker(
+                [28.6295, 77.2215],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_167c73e6254432959e44d55baf5c8a7c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_04feaba459e43ad87aea9edb8af14903 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_da8abfeb3233054212b9c2142c581b28 = $(`<div id="html_da8abfeb3233054212b9c2142c581b28" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#32 Statesman House</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62950, 77.22150       </span>       <div id='eta-32' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_04feaba459e43ad87aea9edb8af14903.setContent(html_da8abfeb3233054212b9c2142c581b28);
+            
+        
+
+        marker_3e6317e4d4f03fa26b0f74245d0f7414.bindPopup(popup_04feaba459e43ad87aea9edb8af14903)
+        ;
+
+        
+    
+    
+            marker_3e6317e4d4f03fa26b0f74245d0f7414.bindTooltip(
+                `<div>
+                     #32 Statesman House
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e6317e4d4f03fa26b0f74245d0f7414.setIcon(icon_167c73e6254432959e44d55baf5c8a7c);
+            
+    
+            var marker_53c51e41c69932f1ac733368b2d62631 = L.marker(
+                [28.6267, 77.2082],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_9595f0ad5ef62b803de9f1b9dfc8153d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_e17c124711e50f793450197f0c58cff6 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d6dc913ebdae203e7c54033d055dd446 = $(`<div id="html_d6dc913ebdae203e7c54033d055dd446" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#33 Shivaji Stadium Terminal</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62670, 77.20820       </span>       <div id='eta-33' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_e17c124711e50f793450197f0c58cff6.setContent(html_d6dc913ebdae203e7c54033d055dd446);
+            
+        
+
+        marker_53c51e41c69932f1ac733368b2d62631.bindPopup(popup_e17c124711e50f793450197f0c58cff6)
+        ;
+
+        
+    
+    
+            marker_53c51e41c69932f1ac733368b2d62631.bindTooltip(
+                `<div>
+                     #33 Shivaji Stadium Terminal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_53c51e41c69932f1ac733368b2d62631.setIcon(icon_9595f0ad5ef62b803de9f1b9dfc8153d);
+            
+    
+            var marker_b8c54d95f47c0d2ff0f161b45a188132 = L.marker(
+                [28.6251, 77.2051],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_fb3595a4d3a8793ff0933c9b236dd13c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_4f906c83da26c0392eab3bf6e5284776 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7b7e5dc83b9119247c975af5da553c84 = $(`<div id="html_7b7e5dc83b9119247c975af5da553c84" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#34 Shaheed Bhagat Singh Marg</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.62510, 77.20510       </span>       <div id='eta-34' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_4f906c83da26c0392eab3bf6e5284776.setContent(html_7b7e5dc83b9119247c975af5da553c84);
+            
+        
+
+        marker_b8c54d95f47c0d2ff0f161b45a188132.bindPopup(popup_4f906c83da26c0392eab3bf6e5284776)
+        ;
+
+        
+    
+    
+            marker_b8c54d95f47c0d2ff0f161b45a188132.bindTooltip(
+                `<div>
+                     #34 Shaheed Bhagat Singh Marg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b8c54d95f47c0d2ff0f161b45a188132.setIcon(icon_fb3595a4d3a8793ff0933c9b236dd13c);
+            
+    
+            var marker_6e40e80e208a78f1469b40b9a56b391b = L.marker(
+                [28.634, 77.2054],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_e566bf245149216137520e729d402869 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_ae40ecdedb34f5953ddcc932aa790532 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_bcb90e82f1e9539c70b607ea0a751738 = $(`<div id="html_bcb90e82f1e9539c70b607ea0a751738" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#35 Gole Market</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63400, 77.20540       </span>       <div id='eta-35' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_ae40ecdedb34f5953ddcc932aa790532.setContent(html_bcb90e82f1e9539c70b607ea0a751738);
+            
+        
+
+        marker_6e40e80e208a78f1469b40b9a56b391b.bindPopup(popup_ae40ecdedb34f5953ddcc932aa790532)
+        ;
+
+        
+    
+    
+            marker_6e40e80e208a78f1469b40b9a56b391b.bindTooltip(
+                `<div>
+                     #35 Gole Market
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6e40e80e208a78f1469b40b9a56b391b.setIcon(icon_e566bf245149216137520e729d402869);
+            
+    
+            var marker_b09a1ca92d6cf3ab25dae2c76aa08a07 = L.marker(
+                [28.6387, 77.2068],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_d1e421950bbfe50499d9e2f9f8d02aa5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_83f4d1c7dca50ba5996a14dca23334ea = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_50705979c82b6ce18e030e241cebb4a2 = $(`<div id="html_50705979c82b6ce18e030e241cebb4a2" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#36 Rama Krishna Ashram Marg</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.63870, 77.20680       </span>       <div id='eta-36' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_83f4d1c7dca50ba5996a14dca23334ea.setContent(html_50705979c82b6ce18e030e241cebb4a2);
+            
+        
+
+        marker_b09a1ca92d6cf3ab25dae2c76aa08a07.bindPopup(popup_83f4d1c7dca50ba5996a14dca23334ea)
+        ;
+
+        
+    
+    
+            marker_b09a1ca92d6cf3ab25dae2c76aa08a07.bindTooltip(
+                `<div>
+                     #36 Rama Krishna Ashram Marg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b09a1ca92d6cf3ab25dae2c76aa08a07.setIcon(icon_d1e421950bbfe50499d9e2f9f8d02aa5);
+            
+    
+            var marker_2b8cf9ac9fc488f1c0de10fa1d0393b0 = L.marker(
+                [28.641, 77.2035],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_fe4d54151af958d0de32f780c1ac422e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_2375b4cbebf4366511af95cc14d9ea84 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_faaf2bc67677731c945a467814904c37 = $(`<div id="html_faaf2bc67677731c945a467814904c37" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#37 Panchkuian Road</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64100, 77.20350       </span>       <div id='eta-37' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_2375b4cbebf4366511af95cc14d9ea84.setContent(html_faaf2bc67677731c945a467814904c37);
+            
+        
+
+        marker_2b8cf9ac9fc488f1c0de10fa1d0393b0.bindPopup(popup_2375b4cbebf4366511af95cc14d9ea84)
+        ;
+
+        
+    
+    
+            marker_2b8cf9ac9fc488f1c0de10fa1d0393b0.bindTooltip(
+                `<div>
+                     #37 Panchkuian Road
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b8cf9ac9fc488f1c0de10fa1d0393b0.setIcon(icon_fe4d54151af958d0de32f780c1ac422e);
+            
+    
+            var marker_0ffe0fe8fb1a365beddca5c867a1f2c5 = L.marker(
+                [28.6418, 77.201],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_2fe78fad052d862fcf23b50ded945f96 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_c813de3519e587d4c8f4bb8bbf2ac211 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_2a4e9f233ee02be13030780ff1847a60 = $(`<div id="html_2a4e9f233ee02be13030780ff1847a60" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#38 Panchkuian Road Banwai Lal Hospital</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64180, 77.20100       </span>       <div id='eta-38' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_c813de3519e587d4c8f4bb8bbf2ac211.setContent(html_2a4e9f233ee02be13030780ff1847a60);
+            
+        
+
+        marker_0ffe0fe8fb1a365beddca5c867a1f2c5.bindPopup(popup_c813de3519e587d4c8f4bb8bbf2ac211)
+        ;
+
+        
+    
+    
+            marker_0ffe0fe8fb1a365beddca5c867a1f2c5.bindTooltip(
+                `<div>
+                     #38 Panchkuian Road Banwai Lal Hospital
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0ffe0fe8fb1a365beddca5c867a1f2c5.setIcon(icon_2fe78fad052d862fcf23b50ded945f96);
+            
+    
+            var marker_84d3c47c599a9e3748fc6a52d90dc1b0 = L.marker(
+                [28.6452, 77.1985],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_5ce5294873232d02ddee6e7e8fc3dd0c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_4eb6f3026730c1c8d597c70c893b32ff = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a06bf1cec8771f7c4e0c3961bd022918 = $(`<div id="html_a06bf1cec8771f7c4e0c3961bd022918" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#39 Meghdoot Bhawan</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64520, 77.19850       </span>       <div id='eta-39' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_4eb6f3026730c1c8d597c70c893b32ff.setContent(html_a06bf1cec8771f7c4e0c3961bd022918);
+            
+        
+
+        marker_84d3c47c599a9e3748fc6a52d90dc1b0.bindPopup(popup_4eb6f3026730c1c8d597c70c893b32ff)
+        ;
+
+        
+    
+    
+            marker_84d3c47c599a9e3748fc6a52d90dc1b0.bindTooltip(
+                `<div>
+                     #39 Meghdoot Bhawan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_84d3c47c599a9e3748fc6a52d90dc1b0.setIcon(icon_5ce5294873232d02ddee6e7e8fc3dd0c);
+            
+    
+            var marker_cd942e3f1e2935f7c6373a73005b6ed7 = L.marker(
+                [28.6491, 77.195],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_a99374447bba4bd8ed640e78dfdc18d7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_6902f5adf8937cfb612c91b01e7ea695 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_ca3483976a5fdc5aa2b466f6533a483f = $(`<div id="html_ca3483976a5fdc5aa2b466f6533a483f" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#40 Pusa Road Petrol Pump / Sadhu Vaswani Marg</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.64910, 77.19500       </span>       <div id='eta-40' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_6902f5adf8937cfb612c91b01e7ea695.setContent(html_ca3483976a5fdc5aa2b466f6533a483f);
+            
+        
+
+        marker_cd942e3f1e2935f7c6373a73005b6ed7.bindPopup(popup_6902f5adf8937cfb612c91b01e7ea695)
+        ;
+
+        
+    
+    
+            marker_cd942e3f1e2935f7c6373a73005b6ed7.bindTooltip(
+                `<div>
+                     #40 Pusa Road Petrol Pump / Sadhu Vaswani Marg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cd942e3f1e2935f7c6373a73005b6ed7.setIcon(icon_a99374447bba4bd8ed640e78dfdc18d7);
+            
+    
+            var marker_db39b5554f15e16519f022a6104726ca = L.marker(
+                [28.652, 77.1898],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_c85ee669fe659388a9625c7aa48dfb6a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_700376a3a75f441b7e2b03aa1c2b2b4a = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a5b30934ae614c768fd1ba154306cff6 = $(`<div id="html_a5b30934ae614c768fd1ba154306cff6" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#41 Karol Bagh Metro Station</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.65200, 77.18980       </span>       <div id='eta-41' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_700376a3a75f441b7e2b03aa1c2b2b4a.setContent(html_a5b30934ae614c768fd1ba154306cff6);
+            
+        
+
+        marker_db39b5554f15e16519f022a6104726ca.bindPopup(popup_700376a3a75f441b7e2b03aa1c2b2b4a)
+        ;
+
+        
+    
+    
+            marker_db39b5554f15e16519f022a6104726ca.bindTooltip(
+                `<div>
+                     #41 Karol Bagh Metro Station
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_db39b5554f15e16519f022a6104726ca.setIcon(icon_c85ee669fe659388a9625c7aa48dfb6a);
+            
+    
+            var marker_abd160d5a773716b41ed8185e6fc5b14 = L.marker(
+                [28.6553, 77.1795],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_13b05d4bff090225cf70e65e96be7c4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_b64e422f0ecc58be466d1c220a2b804b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_869c716850e068aba40860be46573289 = $(`<div id="html_869c716850e068aba40860be46573289" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#42 Rajendra Place</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.65530, 77.17950       </span>       <div id='eta-42' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_b64e422f0ecc58be466d1c220a2b804b.setContent(html_869c716850e068aba40860be46573289);
+            
+        
+
+        marker_abd160d5a773716b41ed8185e6fc5b14.bindPopup(popup_b64e422f0ecc58be466d1c220a2b804b)
+        ;
+
+        
+    
+    
+            marker_abd160d5a773716b41ed8185e6fc5b14.bindTooltip(
+                `<div>
+                     #42 Rajendra Place
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abd160d5a773716b41ed8185e6fc5b14.setIcon(icon_13b05d4bff090225cf70e65e96be7c4c);
+            
+    
+            var marker_f373fa760ec8e85257ffe633f07321c6 = L.marker(
+                [28.6558, 77.1785],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_e06f8b182c13ca1005142e05ad13b825 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_7b5f887223dee5093f4c6e9224f9f883 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_8b26c978c8868417b6cf100dcc124f65 = $(`<div id="html_8b26c978c8868417b6cf100dcc124f65" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#43 RAJENDER PLACE METRO STATION</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.65580, 77.17850       </span>       <div id='eta-43' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_7b5f887223dee5093f4c6e9224f9f883.setContent(html_8b26c978c8868417b6cf100dcc124f65);
+            
+        
+
+        marker_f373fa760ec8e85257ffe633f07321c6.bindPopup(popup_7b5f887223dee5093f4c6e9224f9f883)
+        ;
+
+        
+    
+    
+            marker_f373fa760ec8e85257ffe633f07321c6.bindTooltip(
+                `<div>
+                     #43 RAJENDER PLACE METRO STATION
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f373fa760ec8e85257ffe633f07321c6.setIcon(icon_e06f8b182c13ca1005142e05ad13b825);
+            
+    
+            var marker_c9f7bb41b16e1da79f13f2071cff9d7e = L.marker(
+                [28.6582, 77.1723],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_2b289da04d724386cf4d82650d33a807 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_1adb0207ad3217138c230eeda2b1fdbb = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0cd5a0e41332c40b4fe2f9c0a4469467 = $(`<div id="html_0cd5a0e41332c40b4fe2f9c0a4469467" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#44 East Patel Nagar</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.65820, 77.17230       </span>       <div id='eta-44' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_1adb0207ad3217138c230eeda2b1fdbb.setContent(html_0cd5a0e41332c40b4fe2f9c0a4469467);
+            
+        
+
+        marker_c9f7bb41b16e1da79f13f2071cff9d7e.bindPopup(popup_1adb0207ad3217138c230eeda2b1fdbb)
+        ;
+
+        
+    
+    
+            marker_c9f7bb41b16e1da79f13f2071cff9d7e.bindTooltip(
+                `<div>
+                     #44 East Patel Nagar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9f7bb41b16e1da79f13f2071cff9d7e.setIcon(icon_2b289da04d724386cf4d82650d33a807);
+            
+    
+            var marker_3a9f3c41859be91b48e72aed9d42cdba = L.marker(
+                [28.6607, 77.1662],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_f8aff0731f843be621753e1e4c945b57 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_51077067de581ba367c5e30dc2b65a7e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_b8a0f5c8571acadf5ca730114b7efb68 = $(`<div id="html_b8a0f5c8571acadf5ca730114b7efb68" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#45 SOUTH PATEL NAGAR (METRO STATION)</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66070, 77.16620       </span>       <div id='eta-45' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_51077067de581ba367c5e30dc2b65a7e.setContent(html_b8a0f5c8571acadf5ca730114b7efb68);
+            
+        
+
+        marker_3a9f3c41859be91b48e72aed9d42cdba.bindPopup(popup_51077067de581ba367c5e30dc2b65a7e)
+        ;
+
+        
+    
+    
+            marker_3a9f3c41859be91b48e72aed9d42cdba.bindTooltip(
+                `<div>
+                     #45 SOUTH PATEL NAGAR (METRO STATION)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a9f3c41859be91b48e72aed9d42cdba.setIcon(icon_f8aff0731f843be621753e1e4c945b57);
+            
+    
+            var marker_6e173838f02dde95034b030bba545ac0 = L.marker(
+                [28.6632, 77.1602],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_7ca7c63e5c3c9b3181352a0fe50c98bd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_203c98bf1fa46a8bcfad668a8789c69e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_a61330ec2e6278d576a9b7c72199e1cc = $(`<div id="html_a61330ec2e6278d576a9b7c72199e1cc" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#46 West Patel Nagar / Patel Nagar</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66320, 77.16020       </span>       <div id='eta-46' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_203c98bf1fa46a8bcfad668a8789c69e.setContent(html_a61330ec2e6278d576a9b7c72199e1cc);
+            
+        
+
+        marker_6e173838f02dde95034b030bba545ac0.bindPopup(popup_203c98bf1fa46a8bcfad668a8789c69e)
+        ;
+
+        
+    
+    
+            marker_6e173838f02dde95034b030bba545ac0.bindTooltip(
+                `<div>
+                     #46 West Patel Nagar / Patel Nagar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6e173838f02dde95034b030bba545ac0.setIcon(icon_7ca7c63e5c3c9b3181352a0fe50c98bd);
+            
+    
+            var marker_dad12b0afe054581e8cc5747e4e69ac1 = L.marker(
+                [28.6645, 77.1543],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_9008365aa9b8a7196bb1aba1ba12851d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_2201f1c3946fe1cb915dac81ec797968 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7152ed2b2ab9e964d155f5f8916298be = $(`<div id="html_7152ed2b2ab9e964d155f5f8916298be" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#47 SHADIPUR DTC COLONY METRO STATION</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66450, 77.15430       </span>       <div id='eta-47' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_2201f1c3946fe1cb915dac81ec797968.setContent(html_7152ed2b2ab9e964d155f5f8916298be);
+            
+        
+
+        marker_dad12b0afe054581e8cc5747e4e69ac1.bindPopup(popup_2201f1c3946fe1cb915dac81ec797968)
+        ;
+
+        
+    
+    
+            marker_dad12b0afe054581e8cc5747e4e69ac1.bindTooltip(
+                `<div>
+                     #47 SHADIPUR DTC COLONY METRO STATION
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dad12b0afe054581e8cc5747e4e69ac1.setIcon(icon_9008365aa9b8a7196bb1aba1ba12851d);
+            
+    
+            var marker_89634d0fa449dd936507c7a8e162cf51 = L.marker(
+                [28.6652, 77.151],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_9718f8427a9a75275eea176c12edf3ea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_a6139b8ee76bdd7f8efb9cd7b97f8472 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_28d4de706c7d5acc46c14cf39c4894a4 = $(`<div id="html_28d4de706c7d5acc46c14cf39c4894a4" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#48 Shadipur Depot</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66520, 77.15100       </span>       <div id='eta-48' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_a6139b8ee76bdd7f8efb9cd7b97f8472.setContent(html_28d4de706c7d5acc46c14cf39c4894a4);
+            
+        
+
+        marker_89634d0fa449dd936507c7a8e162cf51.bindPopup(popup_a6139b8ee76bdd7f8efb9cd7b97f8472)
+        ;
+
+        
+    
+    
+            marker_89634d0fa449dd936507c7a8e162cf51.bindTooltip(
+                `<div>
+                     #48 Shadipur Depot
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_89634d0fa449dd936507c7a8e162cf51.setIcon(icon_9718f8427a9a75275eea176c12edf3ea);
+            
+    
+            var marker_49bb0c6643724a32dd98a2980a640c76 = L.marker(
+                [28.6668, 77.1468],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_2c16e5edbb627067a0a692947c48f427 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_41f058d57db56435ff48ece0dbd3762a = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_2a0bfb3ad5d8d5e1c5ce56ebcc4e76bf = $(`<div id="html_2a0bfb3ad5d8d5e1c5ce56ebcc4e76bf" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#49 Moti Nagar Industrial Area</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66680, 77.14680       </span>       <div id='eta-49' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_41f058d57db56435ff48ece0dbd3762a.setContent(html_2a0bfb3ad5d8d5e1c5ce56ebcc4e76bf);
+            
+        
+
+        marker_49bb0c6643724a32dd98a2980a640c76.bindPopup(popup_41f058d57db56435ff48ece0dbd3762a)
+        ;
+
+        
+    
+    
+            marker_49bb0c6643724a32dd98a2980a640c76.bindTooltip(
+                `<div>
+                     #49 Moti Nagar Industrial Area
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_49bb0c6643724a32dd98a2980a640c76.setIcon(icon_2c16e5edbb627067a0a692947c48f427);
+            
+    
+            var marker_6bb84fff22200911c7244fcfb316ee94 = L.marker(
+                [28.6689, 77.142],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_47549b09b0ddb183e456d7bce99e56c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_1d625dcb03c8f6666886281278f69885 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_af440d778c3ec9eab301fa8189c28b63 = $(`<div id="html_af440d778c3ec9eab301fa8189c28b63" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#50 Karampura Terminal</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66890, 77.14200       </span>       <div id='eta-50' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_1d625dcb03c8f6666886281278f69885.setContent(html_af440d778c3ec9eab301fa8189c28b63);
+            
+        
+
+        marker_6bb84fff22200911c7244fcfb316ee94.bindPopup(popup_1d625dcb03c8f6666886281278f69885)
+        ;
+
+        
+    
+    
+            marker_6bb84fff22200911c7244fcfb316ee94.bindTooltip(
+                `<div>
+                     #50 Karampura Terminal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6bb84fff22200911c7244fcfb316ee94.setIcon(icon_47549b09b0ddb183e456d7bce99e56c4);
+            
+    
+            var marker_8be66618668a4b633400051d3be8571f = L.marker(
+                [28.6703, 77.138],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_8322b26817e7c81c0b596d5a79780a6f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "bus",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_b2f79aa5f8a7fdea6d4a28e93b4f4a2c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_fcef77f2044eb4559d945098bf8fbc94 = $(`<div id="html_fcef77f2044eb4559d945098bf8fbc94" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#51 New Moti Nagar B Block</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.67030, 77.13800       </span>       <div id='eta-51' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_b2f79aa5f8a7fdea6d4a28e93b4f4a2c.setContent(html_fcef77f2044eb4559d945098bf8fbc94);
+            
+        
+
+        marker_8be66618668a4b633400051d3be8571f.bindPopup(popup_b2f79aa5f8a7fdea6d4a28e93b4f4a2c)
+        ;
+
+        
+    
+    
+            marker_8be66618668a4b633400051d3be8571f.bindTooltip(
+                `<div>
+                     #51 New Moti Nagar B Block
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8be66618668a4b633400051d3be8571f.setIcon(icon_8322b26817e7c81c0b596d5a79780a6f);
+            
+    
+            var marker_b512d57702de2e0ec640553566a5d9f2 = L.marker(
+                [28.667724, 77.137508],
+                {
+}
+            ).addTo(feature_group_57bf2d531148fabe4fda2bca98b615ff);
+        
+    
+            var icon_7042541ac206af78521ec8da868a55e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+  "iconSize": [20, 20],
+}
+            );
+        
+    
+        var popup_e9134402cb3dbec1dd12ea4986f7bf12 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_5fe16a609105fc5209b9fc41a3b1ce91 = $(`<div id="html_5fe16a609105fc5209b9fc41a3b1ce91" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:180px;'>       <b>#52 Punjabi Bagh Terminal</b><br>       <span style='color:#555;font-size:11px;'>         Route 85 | DTC<br>         📍 28.66772, 77.13751       </span>       <div id='eta-52' style='margin-top:4px;font-size:11px;color:#1565C0;'></div>     </div>     </div>`)[0];
+                popup_e9134402cb3dbec1dd12ea4986f7bf12.setContent(html_5fe16a609105fc5209b9fc41a3b1ce91);
+            
+        
+
+        marker_b512d57702de2e0ec640553566a5d9f2.bindPopup(popup_e9134402cb3dbec1dd12ea4986f7bf12)
+        ;
+
+        
+    
+    
+            marker_b512d57702de2e0ec640553566a5d9f2.bindTooltip(
+                `<div>
+                     #52 Punjabi Bagh Terminal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b512d57702de2e0ec640553566a5d9f2.setIcon(icon_7042541ac206af78521ec8da868a55e5);
+            
+    
+            feature_group_57bf2d531148fabe4fda2bca98b615ff.addTo(map_58c2e863ce74a981ecbac27ae8101725);
+        
+    
+            var feature_group_aa42b46493890384acfaf33f7d8cda76 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_4fd6978d8d172c59ce6d8b533a6e0174 = L.marker(
+                [28.639499999999998, 77.29830000000001],
+                {
+}
+            ).addTo(feature_group_aa42b46493890384acfaf33f7d8cda76);
+        
+    
+            var div_icon_d2f0563f2a5d2362f37e7976c752c1b7 = L.divIcon({
+  "html": "\n    \u003cdiv style=\u0027\n        background:#FFD700;\n        border:2px solid white;\n        border-radius:50%;\n        width:28px;height:28px;\n        display:flex;align-items:center;justify-content:center;\n        box-shadow:0 2px 4px rgba(0,0,0,0.4);\n        font-size:14px;\n        transform:rotate(0deg);\n    \u0027\u003e\ud83d\ude8c\u003c/div\u003e\n    ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_84a308818dba861209b5f6550abfa678 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cc52c9485c4d0f01fec018d4ffae1653 = $(`<div id="html_cc52c9485c4d0f01fec018d4ffae1653" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:200px;padding:4px;'>       <h4 style='margin:0 0 6px;color:#1565C0;'>🚌 DL1SIM1000 (demo)</h4>       <table style='font-size:12px;border-collapse:collapse;width:100%'>         <tr><td><b>Route</b></td><td>85</td></tr>         <tr><td><b>Agency</b></td><td>DTC</td></tr>         <tr><td><b>AC</b></td><td>Yes</td></tr>         <tr><td><b>Speed</b></td><td>28.9 km/h</td></tr>         <tr><td><b>Heading</b></td><td>? (None°)</td></tr>         <tr><td><b>Near Stop</b></td><td>Hasanpur Village</td></tr>         <tr><td><b>Dist to stop</b></td><td>30 m</td></tr>         <tr><td><b>Traffic</b></td>             <td><span style='background:#FFD700;color:#fff;padding:1px 6px;border-radius:3px;'>Slow</span></td>         </tr>       </table>       <p style='font-size:10px;color:#888;margin:4px 0 0;'>2026-09-21T10:04:38.384374</p>     </div>     </div>`)[0];
+                popup_84a308818dba861209b5f6550abfa678.setContent(html_cc52c9485c4d0f01fec018d4ffae1653);
+            
+        
+
+        marker_4fd6978d8d172c59ce6d8b533a6e0174.bindPopup(popup_84a308818dba861209b5f6550abfa678)
+        ;
+
+        
+    
+    
+            marker_4fd6978d8d172c59ce6d8b533a6e0174.bindTooltip(
+                `<div>
+                     Bus DL1SIM1000 | ? | 28.9 km/h | Slow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4fd6978d8d172c59ce6d8b533a6e0174.setIcon(div_icon_d2f0563f2a5d2362f37e7976c752c1b7);
+            
+    
+            var marker_78e286c26913bde939a246b72f468660 = L.marker(
+                [28.6307, 77.25550000000001],
+                {
+}
+            ).addTo(feature_group_aa42b46493890384acfaf33f7d8cda76);
+        
+    
+            var div_icon_65a0c161e998f3b7c9f09484d386e9b8 = L.divIcon({
+  "html": "\n    \u003cdiv style=\u0027\n        background:#00CC00;\n        border:2px solid white;\n        border-radius:50%;\n        width:28px;height:28px;\n        display:flex;align-items:center;justify-content:center;\n        box-shadow:0 2px 4px rgba(0,0,0,0.4);\n        font-size:14px;\n        transform:rotate(0deg);\n    \u0027\u003e\ud83d\ude8c\u003c/div\u003e\n    ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_c66fb5e580011270a000e1294added73 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0a74c1a445349838c1f3f63ebeccb0c4 = $(`<div id="html_0a74c1a445349838c1f3f63ebeccb0c4" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:200px;padding:4px;'>       <h4 style='margin:0 0 6px;color:#1565C0;'>🚌 DL1SIM1001 (demo)</h4>       <table style='font-size:12px;border-collapse:collapse;width:100%'>         <tr><td><b>Route</b></td><td>85</td></tr>         <tr><td><b>Agency</b></td><td>DTC</td></tr>         <tr><td><b>AC</b></td><td>Yes</td></tr>         <tr><td><b>Speed</b></td><td>35.4 km/h</td></tr>         <tr><td><b>Heading</b></td><td>? (None°)</td></tr>         <tr><td><b>Near Stop</b></td><td>Dharma Apartment</td></tr>         <tr><td><b>Dist to stop</b></td><td>30 m</td></tr>         <tr><td><b>Traffic</b></td>             <td><span style='background:#00CC00;color:#fff;padding:1px 6px;border-radius:3px;'>Free Flow</span></td>         </tr>       </table>       <p style='font-size:10px;color:#888;margin:4px 0 0;'>2026-09-21T10:04:38.384374</p>     </div>     </div>`)[0];
+                popup_c66fb5e580011270a000e1294added73.setContent(html_0a74c1a445349838c1f3f63ebeccb0c4);
+            
+        
+
+        marker_78e286c26913bde939a246b72f468660.bindPopup(popup_c66fb5e580011270a000e1294added73)
+        ;
+
+        
+    
+    
+            marker_78e286c26913bde939a246b72f468660.bindTooltip(
+                `<div>
+                     Bus DL1SIM1001 | ? | 35.4 km/h | Free Flow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_78e286c26913bde939a246b72f468660.setIcon(div_icon_65a0c161e998f3b7c9f09484d386e9b8);
+            
+    
+            var marker_70bba3d13f6681ddd73e42bbf69e445c = L.marker(
+                [28.642, 77.2012],
+                {
+}
+            ).addTo(feature_group_aa42b46493890384acfaf33f7d8cda76);
+        
+    
+            var div_icon_e49e5ba2648dfbbec53fa0c4c214ca10 = L.divIcon({
+  "html": "\n    \u003cdiv style=\u0027\n        background:#FFD700;\n        border:2px solid white;\n        border-radius:50%;\n        width:28px;height:28px;\n        display:flex;align-items:center;justify-content:center;\n        box-shadow:0 2px 4px rgba(0,0,0,0.4);\n        font-size:14px;\n        transform:rotate(0deg);\n    \u0027\u003e\ud83d\ude8c\u003c/div\u003e\n    ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_dc18c4abd8afc70896c432c9bd807afb = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8944176d33d7ecd3b165a7b9be10ac25 = $(`<div id="html_8944176d33d7ecd3b165a7b9be10ac25" style="width: 100.0%; height: 100.0%;">     <div style='font-family:sans-serif;min-width:200px;padding:4px;'>       <h4 style='margin:0 0 6px;color:#1565C0;'>🚌 DL1SIM1002 (demo)</h4>       <table style='font-size:12px;border-collapse:collapse;width:100%'>         <tr><td><b>Route</b></td><td>85</td></tr>         <tr><td><b>Agency</b></td><td>DTC</td></tr>         <tr><td><b>AC</b></td><td>Yes</td></tr>         <tr><td><b>Speed</b></td><td>27.7 km/h</td></tr>         <tr><td><b>Heading</b></td><td>? (None°)</td></tr>         <tr><td><b>Near Stop</b></td><td>Panchkuian Road Banwai Lal Hospital</td></tr>         <tr><td><b>Dist to stop</b></td><td>30 m</td></tr>         <tr><td><b>Traffic</b></td>             <td><span style='background:#FFD700;color:#fff;padding:1px 6px;border-radius:3px;'>Slow</span></td>         </tr>       </table>       <p style='font-size:10px;color:#888;margin:4px 0 0;'>2026-09-21T10:04:38.385373</p>     </div>     </div>`)[0];
+                popup_dc18c4abd8afc70896c432c9bd807afb.setContent(html_8944176d33d7ecd3b165a7b9be10ac25);
+            
+        
+
+        marker_70bba3d13f6681ddd73e42bbf69e445c.bindPopup(popup_dc18c4abd8afc70896c432c9bd807afb)
+        ;
+
+        
+    
+    
+            marker_70bba3d13f6681ddd73e42bbf69e445c.bindTooltip(
+                `<div>
+                     Bus DL1SIM1002 | ? | 27.7 km/h | Slow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_70bba3d13f6681ddd73e42bbf69e445c.setIcon(div_icon_e49e5ba2648dfbbec53fa0c4c214ca10);
+            
+    
+            feature_group_aa42b46493890384acfaf33f7d8cda76.addTo(map_58c2e863ce74a981ecbac27ae8101725);
+        
+    
+            var layer_control_3b0372fd9a50ecb0246688122e703dac_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_2af8e888bf5758b593179e62e2fe4e88,
+                },
+                overlays :  {
+                    "\ud83d\ude8c Bus Stops" : feature_group_57bf2d531148fabe4fda2bca98b615ff,
+                    "\ud83d\ude8d Live Buses" : feature_group_aa42b46493890384acfaf33f7d8cda76,
+                },
+            };
+            let layer_control_3b0372fd9a50ecb0246688122e703dac = L.control.layers(
+                layer_control_3b0372fd9a50ecb0246688122e703dac_layers.base_layers,
+                layer_control_3b0372fd9a50ecb0246688122e703dac_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_58c2e863ce74a981ecbac27ae8101725);
+
+        
+</script>
+</html>

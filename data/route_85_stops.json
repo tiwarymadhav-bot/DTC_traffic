@@ -1,0 +1,372 @@
+{
+  "route": "85",
+  "from": "Anand Vihar ISBT",
+  "to": "Punjabi Bagh Terminal",
+  "total_stops": 52,
+  "stops": [
+    {
+      "index": 1,
+      "name": "Anand Vihar ISBT",
+      "lat": 28.64707679021562,
+      "lon": 77.31758236885072,
+      "route": "85"
+    },
+    {
+      "index": 2,
+      "name": "Anand Vihar ISBT Main Road",
+      "lat": 28.6475,
+      "lon": 77.3168,
+      "route": "85"
+    },
+    {
+      "index": 3,
+      "name": "Maharaj Pur Check Post",
+      "lat": 28.6492,
+      "lon": 77.3089,
+      "route": "85"
+    },
+    {
+      "index": 4,
+      "name": "EDM Mall / Gazipur Depot",
+      "lat": 28.6415,
+      "lon": 77.304,
+      "route": "85"
+    },
+    {
+      "index": 5,
+      "name": "Hasanpur Village",
+      "lat": 28.6393,
+      "lon": 77.2981,
+      "route": "85"
+    },
+    {
+      "index": 6,
+      "name": "Hasanpur Depot",
+      "lat": 28.6382,
+      "lon": 77.2956,
+      "route": "85"
+    },
+    {
+      "index": 7,
+      "name": "Ashirwad Apartment",
+      "lat": 28.6378,
+      "lon": 77.2892,
+      "route": "85"
+    },
+    {
+      "index": 8,
+      "name": "Chandar Vihar",
+      "lat": 28.6371,
+      "lon": 77.2845,
+      "route": "85"
+    },
+    {
+      "index": 9,
+      "name": "Mandawali Government School",
+      "lat": 28.6368,
+      "lon": 77.28,
+      "route": "85"
+    },
+    {
+      "index": 10,
+      "name": "Prince Apartment",
+      "lat": 28.6362,
+      "lon": 77.2768,
+      "route": "85"
+    },
+    {
+      "index": 11,
+      "name": "Neeti Apartment",
+      "lat": 28.6358,
+      "lon": 77.2742,
+      "route": "85"
+    },
+    {
+      "index": 12,
+      "name": "Himalaya Apartment",
+      "lat": 28.6352,
+      "lon": 77.2718,
+      "route": "85"
+    },
+    {
+      "index": 13,
+      "name": "Balco Apartment",
+      "lat": 28.6347,
+      "lon": 77.2695,
+      "route": "85"
+    },
+    {
+      "index": 14,
+      "name": "Vijaya Laxmi Apartment",
+      "lat": 28.634,
+      "lon": 77.2672,
+      "route": "85"
+    },
+    {
+      "index": 15,
+      "name": "Parivar Apartment",
+      "lat": 28.6335,
+      "lon": 77.2651,
+      "route": "85"
+    },
+    {
+      "index": 16,
+      "name": "Ras Vihar Apartment (PS Madhu Vihar)",
+      "lat": 28.6328,
+      "lon": 77.2631,
+      "route": "85"
+    },
+    {
+      "index": 17,
+      "name": "Saraswati Kunj",
+      "lat": 28.632,
+      "lon": 77.2612,
+      "route": "85"
+    },
+    {
+      "index": 18,
+      "name": "Press Apartment",
+      "lat": 28.6315,
+      "lon": 77.2593,
+      "route": "85"
+    },
+    {
+      "index": 19,
+      "name": "Govt Model School / Ambedkar Park",
+      "lat": 28.631,
+      "lon": 77.2573,
+      "route": "85"
+    },
+    {
+      "index": 20,
+      "name": "Dharma Apartment",
+      "lat": 28.6305,
+      "lon": 77.2553,
+      "route": "85"
+    },
+    {
+      "index": 21,
+      "name": "Mother Dairy Crossing",
+      "lat": 28.63,
+      "lon": 77.2535,
+      "route": "85"
+    },
+    {
+      "index": 22,
+      "name": "Mother Dairy",
+      "lat": 28.6295,
+      "lon": 77.2517,
+      "route": "85"
+    },
+    {
+      "index": 23,
+      "name": "Shakar Pur School Block",
+      "lat": 28.6288,
+      "lon": 77.2498,
+      "route": "85"
+    },
+    {
+      "index": 24,
+      "name": "Laxmi Nagar X-ing / Laxmi Nagar",
+      "lat": 28.6283,
+      "lon": 77.2475,
+      "route": "85"
+    },
+    {
+      "index": 25,
+      "name": "Rainy Well",
+      "lat": 28.6278,
+      "lon": 77.2452,
+      "route": "85"
+    },
+    {
+      "index": 26,
+      "name": "Delhi Secretariat",
+      "lat": 28.6219,
+      "lon": 77.241,
+      "route": "85"
+    },
+    {
+      "index": 27,
+      "name": "ITO AGCR / ITO",
+      "lat": 28.628,
+      "lon": 77.2401,
+      "route": "85"
+    },
+    {
+      "index": 28,
+      "name": "Tilak Bridge",
+      "lat": 28.6332,
+      "lon": 77.2368,
+      "route": "85"
+    },
+    {
+      "index": 29,
+      "name": "Mandi House",
+      "lat": 28.6258,
+      "lon": 77.2321,
+      "route": "85"
+    },
+    {
+      "index": 30,
+      "name": "MODERN SCHOOL BARA KHAMBA ROAD",
+      "lat": 28.6283,
+      "lon": 77.2268,
+      "route": "85"
+    },
+    {
+      "index": 31,
+      "name": "Barakhamba Metro Station",
+      "lat": 28.6295,
+      "lon": 77.2244,
+      "route": "85"
+    },
+    {
+      "index": 32,
+      "name": "Statesman House",
+      "lat": 28.6295,
+      "lon": 77.2215,
+      "route": "85"
+    },
+    {
+      "index": 33,
+      "name": "Shivaji Stadium Terminal",
+      "lat": 28.6267,
+      "lon": 77.2082,
+      "route": "85"
+    },
+    {
+      "index": 34,
+      "name": "Shaheed Bhagat Singh Marg",
+      "lat": 28.6251,
+      "lon": 77.2051,
+      "route": "85"
+    },
+    {
+      "index": 35,
+      "name": "Gole Market",
+      "lat": 28.634,
+      "lon": 77.2054,
+      "route": "85"
+    },
+    {
+      "index": 36,
+      "name": "Rama Krishna Ashram Marg",
+      "lat": 28.6387,
+      "lon": 77.2068,
+      "route": "85"
+    },
+    {
+      "index": 37,
+      "name": "Panchkuian Road",
+      "lat": 28.641,
+      "lon": 77.2035,
+      "route": "85"
+    },
+    {
+      "index": 38,
+      "name": "Panchkuian Road Banwai Lal Hospital",
+      "lat": 28.6418,
+      "lon": 77.201,
+      "route": "85"
+    },
+    {
+      "index": 39,
+      "name": "Meghdoot Bhawan",
+      "lat": 28.6452,
+      "lon": 77.1985,
+      "route": "85"
+    },
+    {
+      "index": 40,
+      "name": "Pusa Road Petrol Pump / Sadhu Vaswani Marg",
+      "lat": 28.6491,
+      "lon": 77.195,
+      "route": "85"
+    },
+    {
+      "index": 41,
+      "name": "Karol Bagh Metro Station",
+      "lat": 28.652,
+      "lon": 77.1898,
+      "route": "85"
+    },
+    {
+      "index": 42,
+      "name": "Rajendra Place",
+      "lat": 28.6553,
+      "lon": 77.1795,
+      "route": "85"
+    },
+    {
+      "index": 43,
+      "name": "RAJENDER PLACE METRO STATION",
+      "lat": 28.6558,
+      "lon": 77.1785,
+      "route": "85"
+    },
+    {
+      "index": 44,
+      "name": "East Patel Nagar",
+      "lat": 28.6582,
+      "lon": 77.1723,
+      "route": "85"
+    },
+    {
+      "index": 45,
+      "name": "SOUTH PATEL NAGAR (METRO STATION)",
+      "lat": 28.6607,
+      "lon": 77.1662,
+      "route": "85"
+    },
+    {
+      "index": 46,
+      "name": "West Patel Nagar / Patel Nagar",
+      "lat": 28.6632,
+      "lon": 77.1602,
+      "route": "85"
+    },
+    {
+      "index": 47,
+      "name": "SHADIPUR DTC COLONY METRO STATION",
+      "lat": 28.6645,
+      "lon": 77.1543,
+      "route": "85"
+    },
+    {
+      "index": 48,
+      "name": "Shadipur Depot",
+      "lat": 28.6652,
+      "lon": 77.151,
+      "route": "85"
+    },
+    {
+      "index": 49,
+      "name": "Moti Nagar Industrial Area",
+      "lat": 28.6668,
+      "lon": 77.1468,
+      "route": "85"
+    },
+    {
+      "index": 50,
+      "name": "Karampura Terminal",
+      "lat": 28.6689,
+      "lon": 77.142,
+      "route": "85"
+    },
+    {
+      "index": 51,
+      "name": "New Moti Nagar B Block",
+      "lat": 28.6703,
+      "lon": 77.138,
+      "route": "85"
+    },
+    {
+      "index": 52,
+      "name": "Punjabi Bagh Terminal",
+      "lat": 28.667724,
+      "lon": 77.137508,
+      "route": "85"
+    }
+  ]
+}

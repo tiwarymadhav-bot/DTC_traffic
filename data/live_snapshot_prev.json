@@ -1,0 +1,61 @@
+{
+  "route": "85",
+  "timestamp": "2026-09-21T10:04:38.385373",
+  "bus_count": 3,
+  "buses": [
+    {
+      "id": "DL1SIM1000",
+      "lat": 28.639499999999998,
+      "lng": 77.29830000000001,
+      "route": "85",
+      "agency": "DTC",
+      "ac": "ac",
+      "bearing": null,
+      "direction": "?",
+      "nearest_stop": "Hasanpur Village",
+      "stop_index": 5,
+      "dist_to_stop_m": 30,
+      "speed_kmh": 28.9,
+      "traffic": "slow",
+      "traffic_color": "#FFFF00",
+      "simulated": true,
+      "timestamp": "2026-09-21T10:04:38.384374"
+    },
+    {
+      "id": "DL1SIM1001",
+      "lat": 28.6307,
+      "lng": 77.25550000000001,
+      "route": "85",
+      "agency": "DTC",
+      "ac": "ac",
+      "bearing": null,
+      "direction": "?",
+      "nearest_stop": "Dharma Apartment",
+      "stop_index": 20,
+      "dist_to_stop_m": 30,
+      "speed_kmh": 35.4,
+      "traffic": "free_flow",
+      "traffic_color": "#00CC00",
+      "simulated": true,
+      "timestamp": "2026-09-21T10:04:38.384374"
+    },
+    {
+      "id": "DL1SIM1002",
+      "lat": 28.642,
+      "lng": 77.2012,
+      "route": "85",
+      "agency": "DTC",
+      "ac": "ac",
+      "bearing": null,
+      "direction": "?",
+      "nearest_stop": "Panchkuian Road Banwai Lal Hospital",
+      "stop_index": 38,
+      "dist_to_stop_m": 30,
+      "speed_kmh": 27.7,
+      "traffic": "slow",
+      "traffic_color": "#FFFF00",
+      "simulated": true,
+      "timestamp": "2026-09-21T10:04:38.385373"
+    }
+  ]
+}

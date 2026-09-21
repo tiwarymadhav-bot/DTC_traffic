@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delhi Live Bus GPS Trails (DTC Data)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',sans-serif; background:#0f1117; color:#e2e8f0; height:100vh; display:flex; flex-direction:column; }
+
+  /* ── TOP HEADER ── */
+  .header {
+    background:linear-gradient(135deg,#1a237e,#0d47a1);
+    padding:10px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:2px solid #1565c0;
+    flex-shrink:0;
+  }
+  .header-left { display:flex; align-items:center; gap:12px; }
+  .header h1 { font-size:18px; font-weight:700; }
+  .header h1 span { color:#64b5f6; }
+  
+  /* ── MAIN LAYOUT ── */
+  .main { display:flex; flex:1; overflow:hidden; position: relative; }
+  #map { flex:1; z-index:1; position: relative; }
+
+  /* ── SIDE PANEL ── */
+  .side-panel {
+    width:320px; background:#161b27;
+    border-left:1px solid #1e2a45;
+    display:flex; flex-direction:column;
+    padding:15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  .side-panel.collapsed {
+    width: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+  }
+
+  #toggleBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    background: #1a237e;
+    color: white;
+    border: 1px solid #64b5f6;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    transition: background 0.2s;
+  }
+  #toggleBtn:hover { background: #283593; }
+
+  .panel-title { font-size: 14px; color: #64b5f6; margin-bottom: 15px; border-bottom: 1px solid #1e2a45; padding-bottom: 5px; white-space: nowrap; }
+  
+  .legend-item { display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:12px; }
+  .legend-line { width: 30px; height: 6px; border-radius:3px; }
+  
+  .routes-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 15px; }
+  .route-tag { background: #1e2a45; border: 1px solid #263556; padding: 4px 8px; border-radius: 4px; font-size: 11px; color: #90caf9; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div>📡</div>
+    <div>
+      <h1>Delhi Traffic Flow — <span>Live GPS</span></h1>
+      <div style="font-size:11px;color:#90caf9;margin-top:2px;">Using Actual DTC API (buses/ endpoint) Lat/Lng Updates</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- THE MAP -->
+  <div id="map">
+    <button id="toggleBtn" onclick="togglePanel()">Hide Panel &raquo;</button>
+  </div>
+  
+  <div class="side-panel" id="sidePanel">
+    <div class="panel-title">Real-Time</div>
+    <p style="font-size:11px; color:#90a4ae; line-height:1.5; margin-bottom:20px;">
+      Just like your Network tab shows, the backend is continuously polling the DTC API. 
+      <br><br>As buses emit new <code>lat/lng</code>, we connect the dots! The line speed determines the color, organically painting the road network without fake grids.
+    </p>
+
+    <div class="panel-title">Traffic Legend</div>
+    <div class="legend-item">
+      <div class="legend-line" style="background:#ff5252;"></div> <span>Heavy Jam (&lt; 5 km/h)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background:#ffab40;"></div> <span>Moderate (5-15 km/h)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background:#69f0ae;"></div> <span>Free Flow (&gt; 15 km/h)</span>
+    </div>
+    <div class="legend-item">
+      <div style="width:10px;height:10px;border-radius:50%;background:white;border:2px solid #1a237e;"></div> <span>Active Bus Position</span>
+    </div>
+
+    <div class="panel-title" style="margin-top:20px;">Live Routes Data</div>
+    <div class="routes-list">
+      <div class="route-tag">73</div>
+      <div class="route-tag">307</div>
+      <div class="route-tag">309</div>
+      <div class="route-tag">391</div>
+      <div class="route-tag">534</div>
+      <div class="route-tag">469</div>
+      <div class="route-tag">OMS</div>
+      <div class="route-tag">85</div>
+      <div class="route-tag">623</div>
+      <div class="route-tag">Central</div>
+      <div class="route-tag">D-4501</div>
+      <div class="route-tag">D-5401</div>
+      <div class="route-tag">463</div>
+      <div class="route-tag">534A</div>
+      <div class="route-tag">433</div>
+      <div class="route-tag">473</div>
+      <div class="route-tag">429</div>
+    </div>
+
+    <div class="panel-title" style="margin-top:20px;">Live Stats</div>
+    <p style="font-size:12px; color:#b0bec5;">Segments Drawn: <b id="stat-segments" style="color:#64b5f6">0</b></p>
+    <p style="font-size:12px; color:#b0bec5; margin-top:5px;">Active Buses: <b id="stat-buses" style="color:#64b5f6">0</b></p>
+    <p style="font-size:10px; color:#546e7a; margin-top:20px;">Auto-syncing every 5 seconds...</p>
+  </div>
+</div>
+
+<script>
+// Light basemap for great contrast with traffic lines
+const map = L.map('map').setView([28.63, 77.225], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap',
+  maxZoom: 19
+}).addTo(map);
+
+let segmentsLayer = L.layerGroup().addTo(map);
+let busesLayer = L.layerGroup().addTo(map);
+
+async function syncGPSData() {
+  try {
+    const res = await fetch('/api/traffic_segments');
+    const data = await res.json();
+    
+    // 1. Draw GPS Trails (Traffic Segments)
+    segmentsLayer.clearLayers();
+    L.geoJSON(data.segments, {
+      style: function(feature) {
+        return {
+          color: feature.properties.color,
+          weight: 6,
+          opacity: 0.8
+        };
+      },
+      onEachFeature: function(feature, layer) {
+        let routeInfo = feature.properties.route ? `<br><b>Route:</b> ${feature.properties.route}` : "";
+        layer.bindPopup(`<b>Bus No:</b> ${feature.properties.bus_id}${routeInfo}<br><b>Speed:</b> ${feature.properties.speed} km/h`);
+      }
+    }).addTo(segmentsLayer);
+
+    // 2. Draw Active Buses (Moving dots)
+    busesLayer.clearLayers();
+    L.geoJSON(data.buses, {
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, {
+          radius: 5,
+          fillColor: "#ffffff",
+          color: "#1a237e",
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 1
+        });
+      },
+      onEachFeature: function(feature, layer) {
+        let routeInfo = feature.properties.route ? `<br><b>Route:</b> ${feature.properties.route}` : "";
+        layer.bindPopup(`<b>Bus No:</b> ${feature.properties.bus_id}${routeInfo}<br><b>Status:</b> Live`);
+      }
+    }).addTo(busesLayer);
+
+    // Update Stats
+    document.getElementById('stat-segments').textContent = data.segments.features.length;
+    document.getElementById('stat-buses').textContent = data.buses.features.length;
+    
+  } catch(e) {
+    console.error("Sync failed", e);
+  }
+}
+
+// Start auto-sync
+syncGPSData();
+setInterval(syncGPSData, 5000); // Sync every 5s
+    function togglePanel() {
+      const panel = document.getElementById("sidePanel");
+      const btn = document.getElementById("toggleBtn");
+      panel.classList.toggle("collapsed");
+      if (panel.classList.contains("collapsed")) {
+        btn.innerHTML = "&laquo; Show Panel";
+      } else {
+        btn.innerHTML = "Hide Panel &raquo;";
+      }
+      setTimeout(() => { map.invalidateSize(); }, 350);
+    }
+  </script>
+</body>
+</html>
