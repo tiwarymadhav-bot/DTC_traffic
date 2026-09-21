@@ -141,6 +141,8 @@ async def get_snapped_route(session, lat1, lon1, lat2, lon2, last_bearing=None):
         
     url = f"http://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}?overview=full&geometries=geojson&steps=true{b_param}"
     
+    fallback_route = [[lon1, lat1], [lon2, lat2]]
+    
     try:
         async with session.get(url, timeout=2) as r:
             if r.status == 200:
@@ -148,20 +150,19 @@ async def get_snapped_route(session, lat1, lon1, lat2, lon2, last_bearing=None):
                 if data.get("code") == "Ok":
                     route = data["routes"][0]
                     
-                    # Anti-ZigZag Heuristic: Count maneuvers/turns.
-                    # A bus traveling for 15s cannot physically make 5+ distinct turns. 
-                    # If it has 5+ steps, it's jumping through narrow residential colony streets due to GPS noise.
+                    # Filter out GPS noise (jumping through narrow colony streets)
                     legs = route.get("legs", [])
                     if legs and "steps" in legs[0]:
                         if len(legs[0]["steps"]) > 4:
-                            return [], bearing
+                            return fallback_route, bearing
 
                     # Relaxed distance rejection (3.0x) to allow curved flyovers and highway loops
                     if straight_dist_m == 0 or route["distance"] <= straight_dist_m * 3.0 or route["distance"] <= 50:
                         return route["geometry"]["coordinates"], bearing
     except: pass
     
-    return [], bearing
+    # If OSRM is rate-limited (e.g. 429), just draw a straight line so we don't lose the paint
+    return fallback_route, bearing
 
 @app.on_event("startup")
 async def startup_event():
